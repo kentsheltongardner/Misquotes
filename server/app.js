@@ -9,9 +9,6 @@ async function run() {
     const client = new MongoClient(uri)
     await client.connect()
     const database = client.db('Misquotes')
-
-    console.log("Connected to Mongo")
-
     async function randomQuote() {
         return (await database.collection('Quotes').aggregate(
             [ 
@@ -20,7 +17,6 @@ async function run() {
             ]
         ).toArray())[0].quotes
     }
-
     async function randomCharacter() {
         return (await database.collection('Characters').aggregate(
             [ 
@@ -29,7 +25,6 @@ async function run() {
             ]
         ).toArray())[0].characters
     }
-
     function randomImageURL() {
         const files = fs.readdirSync(path.join('__dirname', '..', 'public', 'images'))
         const number = Math.floor(Math.random() * files.length)
@@ -38,10 +33,8 @@ async function run() {
     
     const app = express()
     const port = 3000
-    
     app.use(express.static('public/'))
     app.get('/misquote', async (req, res) => {
-        console.log("Misquote clicked")
         const quote = await randomQuote()
         const character = await randomCharacter()
         res.send(`<img src="${randomImageURL()}"/>

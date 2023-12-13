@@ -26,11 +26,10 @@ main > img {
 }
 p {
     display: block;
-    width: 50vw;
-    max-width: 50vw;
-    left: 50%;
+    max-width: 40vw;
+    left: 50vw;
     transform: translateX(-50%);
-    top: 50%;
+    top: 50vh;
     color: white;
     position: fixed;
     font-style: italic;
