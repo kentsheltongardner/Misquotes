@@ -10,6 +10,8 @@ async function run() {
     await client.connect()
     const database = client.db('Misquotes')
 
+    console.log("Connected to Mongo")
+
     async function randomQuote() {
         return (await database.collection('Quotes').aggregate(
             [ 
@@ -39,14 +41,12 @@ async function run() {
     
     app.use(express.static('public/'))
     app.get('/misquote', async (req, res) => {
+        console.log("Misquote clicked")
         const quote = await randomQuote()
         const character = await randomCharacter()
         res.send(`<img src="${randomImageURL()}"/>
             <p>${quote}<br><br><cite>- ${character}</cite></p>
         `)
-    })
-    app.get('/', (req, res) => {
-        res.send('Hello World!')
     })
     app.listen(port, () => {
         console.log(`Example app listening on port ${port}`)
