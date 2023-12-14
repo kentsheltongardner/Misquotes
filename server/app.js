@@ -1,6 +1,4 @@
 const express = require('express')
-const fs = require('fs')
-const path = require('path')
 require('dotenv').config()
 const { MongoClient } = require('mongodb')
 
@@ -9,6 +7,7 @@ async function run() {
     const client = new MongoClient(uri)
     await client.connect()
     const database = client.db('Misquotes')
+    
     async function randomQuote() {
         return (await database.collection('Quotes').aggregate(
             [ 
@@ -26,9 +25,8 @@ async function run() {
         ).toArray())[0].characters
     }
     function randomImageURL() {
-        const files = fs.readdirSync(path.join('__dirname', '..', 'public', 'images'))
-        const number = Math.floor(Math.random() * files.length)
-        return `http://localhost:3000/images/${files[number]}`
+        const number = Math.floor(Math.random() * 99)
+        return `https://files.kent-gardner.org/misquotes/images/${number}.avif`
     }
     
     const app = express()

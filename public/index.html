@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="./index.css">
     <script src="https://unpkg.com/htmx.org@1.9.9"></script>
 </head>
-<body hx-get="/misquote" hx-trigger="keydown[code=='Space']" hx-target="#misquote">
+<body hx-get="/misquote" hx-trigger="load, keydown[code=='Space']" hx-target="#misquote">
     <main id="misquote"></main>
     <div hx-get="/misquote" hx-trigger="click" hx-target="#misquote" class="button" id="misquote-button">
         Generate misquote (spacebar)

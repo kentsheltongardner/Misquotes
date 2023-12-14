@@ -39,6 +39,7 @@ p {
 cite {
     font-size: 56px;
     font-weight: bold;
+    text-align: right;
 }
 
 .button {
